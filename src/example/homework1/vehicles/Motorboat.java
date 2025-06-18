@@ -8,7 +8,6 @@ public class Motorboat extends Vehicle implements Screw, Hauling{
         this.motorboatSpeed = motorboatSpeed;
     }
 
-
     @Override
     public void haul() {
         System.out.println("Motorboat is hauling");

@@ -1,6 +1,7 @@
 package example.homework1.animals;
 
 public class Spine {
+
     private Integer length;
     private Integer vertebralCount;
 
