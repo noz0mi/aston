@@ -1,6 +1,7 @@
 package example.homework1.animals;
 
 public class Wool {
+
     private Double density;
     private String smell;
     private Integer length;
