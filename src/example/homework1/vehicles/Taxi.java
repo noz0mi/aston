@@ -1,6 +1,7 @@
 package example.homework1.vehicles;
 
 public class Taxi extends Vehicle implements Wheeled{
+
     private int maxPersonCount;
 
     public Taxi(int maxPersonCount) {

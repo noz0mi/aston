@@ -1,6 +1,7 @@
 package example.homework1.animals;
 
 public abstract class Mammal extends Animal {
+
     private Spine spine;
 
     protected Mammal(Spine spine) {

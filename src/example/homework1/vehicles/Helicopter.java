@@ -8,7 +8,6 @@ public class Helicopter extends Vehicle implements Screw, Hauling, Wheeled{
         this.liftingCapacity = liftingCapacity;
     }
 
-
     @Override
     public void haul() {
         System.out.println("Helicopter is hauling");

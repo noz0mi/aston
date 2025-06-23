@@ -1,7 +1,5 @@
 package example.homework1.animals;
 
-import java.sql.SQLOutput;
-
 public class Cat extends Mammal{
 
     private Wool wool;
