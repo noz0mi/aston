@@ -1,38 +1,37 @@
 package example.homework2.collections;
 
-
 import java.util.Arrays;
 
-public class MyOwnArrayList<T> {
+public class MyOwnArrayList<E> {
     private static final int DEFAULT_CAPACITY = 10;
 
     private int size;
-    private Object[] innerArray;
+    private E[] elements;
 
     public MyOwnArrayList() {
         this(DEFAULT_CAPACITY);
     }
 
     public MyOwnArrayList(int capacity) {
-        this.innerArray = new Object[capacity];
+        this.elements = (E[]) new Object[capacity];
     }
 
-    public boolean add(T element) {
-        if (size == innerArray.length) {
-            this.innerArray = grow(size + 1);
+    public boolean add(E element) {
+        if (size == elements.length) {
+            this.elements = grow(size + 1);
         }
-        innerArray[size] = element;
+        elements[size] = element;
         size++;
         return true;
     }
 
-    private Object[] grow(int requiredSize) {
+    private E[] grow(int requiredSize) {
         int oldSize = size;
         if(oldSize > 0) {
             int newSize = requiredSize + (requiredSize >> 1);
-            return innerArray = Arrays.copyOf(innerArray, newSize);
+            return elements = Arrays.copyOf(elements, newSize);
         } else {
-            return innerArray = new Object[Math.max(DEFAULT_CAPACITY, requiredSize)];
+            return elements = (E[]) new Object[Math.max(DEFAULT_CAPACITY, requiredSize)];
         }
     }
 
@@ -44,56 +43,48 @@ public class MyOwnArrayList<T> {
         return true;
     }
 
-    public T get(int index) {
+    public E get(int index) {
          if (checkIndex(index)) {
-             return (T) innerArray[index];
+             return (E) elements[index];
          }
          return null;
     }
 
-    public T remove(int index) {
+    public E remove(int index) {
         if (checkIndex(index)) {
-            Object[] changedArray = new Object[size - 1];
+            E[] changedArray = (E[]) new Object[size - 1];
             for (int i = 0; i < index; i++) {
-                changedArray[i] = innerArray[i];
+                changedArray[i] = elements[i];
             }
             for (int i = index; i < size - 1 ; i++) {
-                changedArray[i] = innerArray[i+1];
+                changedArray[i] = elements[i+1];
             }
-            innerArray = changedArray;
+            elements = changedArray;
             size--;
-            return (T) innerArray[index];
+            return elements[index];
         } else {
             return null;
         }
     }
 
-    public boolean addAll(T[] array) {
+    public boolean addAll(E[] array) {
         return addAll(size, array);
     }
 
-    public boolean addAll(int index, T[] array) {
+    public boolean addAll(int index, E[] array) {
         int addedLength = array.length;
         if (addedLength == 0)
             return false;
-        if (addedLength > (this.innerArray.length - size)) {
-            this.innerArray = grow(size + addedLength);
+        if (index > size || index < 0)
+            throw new IndexOutOfBoundsException("Index: "+ index +", Size: "+ size);
+        if (addedLength > (this.elements.length - size)) {
+            this.elements = grow(size + addedLength);
         }
-        Object[] newArray = new Object[innerArray.length];
-        //Копирование элементов до индекса вставки
-        for (int i = 0; i < index; i++) {
-            newArray[i] = innerArray[i];
+        if (index > 0) {
+            System.arraycopy(elements, index, elements, index + addedLength, size - index);
         }
-        //Вставка добавляемого массива
-        for (int i = 0; i < array.length; i++) {
-            newArray[i + index] = array[i];
-        }
-        //Копирование оставшихся элементов после вставки добавляемого массива
-        for (int i = index; i < size; i++) {
-            newArray[i + array.length] = innerArray[i];
-        }
-        this.innerArray = newArray;
-        size += array.length;
+        System.arraycopy(array, 0, this.elements, index, addedLength);
+        size += addedLength;
         return true;
     }
 
@@ -104,7 +95,7 @@ public class MyOwnArrayList<T> {
     @Override
     public String toString() {
         return "MyOwnArrayList{" +
-                "innerArray=" + Arrays.toString(innerArray) +
+                "elements=" + Arrays.toString(elements) +
                 '}';
     }
 }

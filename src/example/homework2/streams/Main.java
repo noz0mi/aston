@@ -4,8 +4,6 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
-import static java.util.Arrays.asList;
-
 public class Main {
     public static void main(String[] args) {
         Book book1 = new Book(2001, "Geometry", 301);
@@ -19,13 +17,12 @@ public class Main {
         Book book9 = new Book(1997, "Philosophy", 200);
         Book book10 = new Book(1949, "1984", 400);
         Student student1 = new Student("Paul", 2);
-        student1.setBooks(asList(book1, book2, book4, book9, book10));
+        student1.setBooks(List.of(book1, book2, book4, book9, book10));
         Student student2 = new Student("Nicole", 3);
-        student2.setBooks(asList(book3, book5, book6, book7, book10));
+        student2.setBooks(List.of(book3, book5, book6, book7, book10));
         Student student3 = new Student("Elena", 1);
-        student3.setBooks(asList(book1, book2, book3, book8, book10));
-
-        List<Student> students = new LinkedList<>(asList(student1, student2,student3));
+        student3.setBooks(List.of(book1, book2, book3, book8, book10));
+        List<Student> students = new LinkedList<>(List.of(student1, student2,student3));
 
         students.stream()
                 .peek(st -> System.out.println("Peek -> " + st))
@@ -38,6 +35,5 @@ public class Main {
                 .map(Book::getYear)
                 .findAny().ifPresentOrElse(System.out::println,
                         () -> System.out.println("Книга с таким годом издания отсутствует."));
-
     }
 }

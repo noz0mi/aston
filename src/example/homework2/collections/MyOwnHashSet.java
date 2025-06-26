@@ -2,6 +2,7 @@ package example.homework2.collections;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 
 public class MyOwnHashSet<T> {
     private static final int DEFAULT_CAPACITY = 16;
@@ -9,7 +10,7 @@ public class MyOwnHashSet<T> {
 
     private int capacity;
     private double loadFactor;
-    private LinkedList<T>[] buckets;
+    private List<T>[] buckets;
     private int size;
 
     public MyOwnHashSet() {
@@ -19,7 +20,7 @@ public class MyOwnHashSet<T> {
     public MyOwnHashSet(int capacity, double loadFactor) {
         this.capacity = capacity;
         this.loadFactor = loadFactor;
-        this.buckets = new LinkedList[this.capacity];
+        this.buckets = new List[this.capacity];
     }
 
     private int hash(T element) {
@@ -56,7 +57,7 @@ public class MyOwnHashSet<T> {
     private void resize() {
         capacity *= 2;
         LinkedList<T>[] resizedBuckets = new LinkedList[capacity];
-        for (LinkedList<T> bucket : buckets) {
+        for (List<T> bucket : buckets) {
             if (bucket != null) {
                 for (int i = 0; i < bucket.size(); i ++) {
                     T element = bucket.get(i);
@@ -76,7 +77,7 @@ public class MyOwnHashSet<T> {
             return false;
         }
         int index = hash(element);
-        LinkedList<T> bucket = buckets[index];
+        List<T> bucket = buckets[index];
         for (int i = 0; i < bucket.size(); i++) {
             if (bucket.get(i).equals(element)) {
                 bucket.remove(i);
