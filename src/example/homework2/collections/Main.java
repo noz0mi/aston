@@ -11,7 +11,7 @@ public class Main {
         myOwnArrayList.add(4);
         System.out.println(myOwnArrayList);
         System.out.println(myOwnArrayList.size());
-        Integer [] newArray = new Integer[] {22, 33, 44, 55, 66, 77};
+        Integer[] newArray = new Integer[] {22, 33, 44, 55, 66, 77};
         myOwnArrayList.addAll(2, newArray);
         System.out.println(myOwnArrayList);
         myOwnArrayList.addAll(newArray);
