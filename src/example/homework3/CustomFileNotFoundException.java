@@ -1,6 +1,8 @@
 package example.homework3;
 
-public class CustomFileNotFoundException extends Exception {
+import java.io.IOException;
+
+public class CustomFileNotFoundException extends IOException {
 
     public CustomFileNotFoundException(String message) {
         super(message);
