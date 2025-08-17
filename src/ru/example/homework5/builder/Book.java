@@ -6,11 +6,11 @@ public class Book {
     private int pages;
     private String description;
 
-    public Book(BookBuilder bookBuilder) {
-        name = bookBuilder.name;
-        publishingYear = bookBuilder.publishingYear;
-        pages = bookBuilder.pages;
-        description = bookBuilder.description;
+    public Book(String name, Integer publishingYear, int pages, String description) {
+        this.name = name;
+        this.publishingYear = publishingYear;
+        this.pages = pages;
+        this.description = description;
     }
 
     public Integer getPublishingYear() {
@@ -88,7 +88,7 @@ public class Book {
         }
 
         public Book build() {
-            return new Book(this);
+            return new Book(name, publishingYear, pages, description);
 
         }
     }
